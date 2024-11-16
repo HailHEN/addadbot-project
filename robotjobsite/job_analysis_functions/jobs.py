@@ -9,7 +9,8 @@ class JobPosts:
     # domain is if it is in medical, space etc
 
 
-    def __init__(self, job_title, date_posted, job_country, job_position, position_title, employment_type, robot_type, robotics_domain):
+    def __init__(self, job_title, date_posted, job_country, 
+                 job_position, position_title, employment_type, robot_type, robotics_domain):
         self.job_title = job_title
         self.date_posted = date(date_posted)
         self.job_country = job_country
