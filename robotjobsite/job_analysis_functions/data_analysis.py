@@ -13,7 +13,11 @@ import pandas as pd
 
 class JobPostingsAnalysis:
 
+    job_df = pd.DataFrame()
+
     def convert_to_dataframe(list_of_jobs):
+
+        return
 
         
 
@@ -22,27 +26,32 @@ class JobPostingsAnalysis:
 
     def __init__(self, list_of_jobs):
         
-        self.dataframe_jobs_list = JobPostingsAnalysis.convert_to_dataframe(list_of_jobs=list_of_jobs)
+        self.job_df = self.convert_to_dataframe(list_of_jobs=list_of_jobs)
 
 
 
     
     def analyse_parameters():
+        return
         
 
 
 
     def analyse_type_of_robotics():
+        return
 
 
     def analyse_expertise_of_robotics_field():
+        return
 
 
     def analyse_skills_required():
+        return
 
 
 
     def analyse_postings_date_created():
+        return
 
 
 
