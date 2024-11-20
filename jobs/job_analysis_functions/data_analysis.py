@@ -1,7 +1,7 @@
 
 from django.db import models
 
-from .jobs import JobPosts
+
 import sklearn as sk
 import pandas as pd
 
@@ -15,18 +15,9 @@ class JobPostingsAnalysis:
 
     job_df = pd.DataFrame()
 
-    def convert_to_dataframe(list_of_jobs):
-
-        return
-
-        
-
-
-
-
     def __init__(self, list_of_jobs):
         
-        self.job_df = self.convert_to_dataframe(list_of_jobs=list_of_jobs)
+        self.job_df = pd.DataFrame(list_of_jobs)
 
 
 
@@ -56,6 +47,7 @@ class JobPostingsAnalysis:
 
 
     def analyse_job_position_posted():
+        return
 
         
     
