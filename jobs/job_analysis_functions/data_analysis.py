@@ -11,6 +11,17 @@ import pandas as pd
 
 # convert all objects into pandas dataframe
 
+# make sure statistics are user interaction
+
+# end user, so select paramters and display information
+# what skills aare in demand right now, so user selcts
+
+# whichcountries are looking
+
+# and what area of robotics
+
+
+
 class JobPostingsAnalysis:
 
     job_df = pd.DataFrame()
@@ -33,6 +44,9 @@ class JobPostingsAnalysis:
 
 
     def analyse_expertise_of_robotics_field():
+        return
+    #programming skills
+    def software_skills_required():
         return
 
 
