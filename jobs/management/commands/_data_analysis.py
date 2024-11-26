@@ -30,36 +30,41 @@ class JobPostingsAnalysis:
 
 
     # the following functions are the paramaters we are analysing
-    def analyse_parameters():
+    def data_frame(self):
+        return self.job_df
+    
+    def analyse_parameters(self):
         return
         
 
 
 
-    def analyse_type_of_robotics():
+    def analyse_type_of_robotics(self):
         return
 
 
-    def analyse_expertise_of_robotics_field():
+    def analyse_expertise_of_robotics_field(self):
         return
     #programming skills
-    def software_skills_required():
+    def software_skills_required(self):
         return
 
 
-    def analyse_skills_required():
-        return
-
-
-
-    def analyse_postings_date_created():
+    def analyse_skills_required(self):
         return
 
 
 
-    def analyse_job_position_posted():
+    def analyse_postings_date_created(self):
         return
 
+
+
+    def analyse_job_position_posted(self):
+        return
+    
+    def keywords_in_title(self):
+        return
         
     
 
