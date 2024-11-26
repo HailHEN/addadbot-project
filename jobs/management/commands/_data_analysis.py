@@ -1,7 +1,4 @@
 
-from django.db import models
-
-
 import sklearn as sk
 import pandas as pd
 
@@ -32,7 +29,7 @@ class JobPostingsAnalysis:
 
 
 
-    
+    # the following functions are the paramaters we are analysing
     def analyse_parameters():
         return
         
