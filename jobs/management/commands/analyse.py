@@ -13,5 +13,14 @@ class Command(BaseCommand):
           d_analysis = JobPostingsAnalysis(JobPost.objects.all().values())
           self.stdout.write(d_analysis.data_frame().to_string())
           
+
+          #user selects what to graph
+
+          #demo
+
+          d_analysis.analyse_postings_date_created()
+
+
+          
           self.stdout.write(self.style.SUCCESS('Successfully ran analysis!'))
           return
