@@ -28,7 +28,7 @@ class JobPostingsAnalysis:
     job_df = pd.DataFrame()
 
     def __init__(self, list_of_jobs):
-        
+
         self.job_df = pd.DataFrame(list_of_jobs)
         self.job_df["date_posted"] = self.job_df["date_posted"].astype("datetime64[ns]")
         self.job_df.drop('id', axis=1, inplace=True)
@@ -78,5 +78,5 @@ class JobPostingsAnalysis:
     def keywords_skill_analyser(self):
         return
         
-    
+
 
