@@ -11,7 +11,7 @@ class Command(BaseCommand):
 
      def handle(self, *args, **options):
           d_analysis = JobPostingsAnalysis(JobPost.objects.all().values())
-          self.stdout.write(d_analysis.data_frame().to_string())
+          print(d_analysis.data_frame().to_string())
           
           
 

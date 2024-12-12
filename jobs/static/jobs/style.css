@@ -1,0 +1,18 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+  }
+.results-container {
+
+    display: flex;
+    justify-content: space-around;
+}
+
+.banner-container {
+    
+    height: 130px;
+    background-color: #5DC8AC;
+    
+    
+}

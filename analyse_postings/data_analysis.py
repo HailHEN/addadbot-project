@@ -23,6 +23,20 @@ import pandas as pd
 
 # 
 
+
+
+##################################################################
+
+# 1. Selection for user to  investigate which data to see
+# 2. Selection for user to investigate date (time period) along side information to display
+
+
+
+# after this week add extra analysis like trend analysis and stuff
+
+
+
+##################################################################
 class JobPostingsAnalysis:
 
     job_df = pd.DataFrame()
@@ -42,7 +56,7 @@ class JobPostingsAnalysis:
         
     def analyse_type_of_robotics(self):
         self.job_df['robot_type'].value_counts().plot(kind='bar')
-        plt.show()
+        
         
         return
 
