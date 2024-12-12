@@ -12,18 +12,74 @@
   </head>
   <body>
 
-    <div class = "banner-container"> </div>
-    
-    <div class = "results-contianer">
-
+    <div class= "banner"> </div>
+    <div class="overview-container"> 
+        <div class = "card c1">
+          Jobs posted in your location
+          {{ numbersForCountry }}
+        </div>
+        <div class = "card c2">
+          Jobs posted this month
+          {{ numbersForMonth }}
+        </div>
+        <div class = "card c3">
+          Jobs posted today
+          {{ numbersForDay }}
+        </div>
+      
+      
     </div>
 
-    </div>
+    <div class = "main-container"> 
   
-  </div>
+      <div class = "dashboard-container">
+        <div class="sidebar-container">
+
+          <label class = "dashboard-item" for="graph-select">Robotics job postings analysis</label>
+
+          <form method = "GET" class="form-container">
+            {% csrf_token %}
+            <select name="graphs" class="graph-select">
+              <option value="post">Postings</option>
+              <option value="robot-type">Type of Robot</option>
+              <option value="expertise">Area of Expertise</option>
+              <option value="skills">Required Software Skills</option>
+              <option value="position">Job Position</option>
+            </select>
+            <input type="submit" value="Select">
+          </form>
+
+
+
+        </div>
+        <div class="graph-container">
+
+
+          <div class = "chart-container"> 
+
+            {%block content%}
+    
+            {{chart|safe}}
+    
+            {%endblock content%}
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+    </div>
+
+    
+    
+    
    
 
 
 
   </body>
 </html>
+
+

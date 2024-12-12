@@ -29,6 +29,7 @@ import pandas as pd
 
 # 1. Selection for user to  investigate which data to see
 # 2. Selection for user to investigate date (time period) along side information to display
+# 3. Use line graph instead of histogram
 
 
 
@@ -91,6 +92,11 @@ class JobPostingsAnalysis:
     # add description section in model later
     def keywords_skill_analyser(self):
         return
+    
+
+
+    def get_data_frame(self):
+        return self.job_df
         
 
 

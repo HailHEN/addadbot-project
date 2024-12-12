@@ -1,18 +1,122 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+    margin: 0px;
+    padding: 0px;
     
-  }
-.results-container {
-
+}
+body{
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    /* height: 100vh;  */
+
+    min-height: 100vh;
+    
+}
+.banner{
+
+    flex: 1;
+    background-color: #5DC8AC;
+
 }
 
-.banner-container {
+.overview-container {
+    display: flex;
+    flex: 5;
+    justify-content: center;
+}
+.card {
+    flex: 1;
+    margin: 10px;
+    text-align: center;
+    border: black 2px solid;
+    font-size: large;
+}
+.main-container {
     
+    flex: 10;
+
+    
+    
+}
+
+.dashboard-container {
+    display: flex;
+    height: 100%;
+
+}
+
+.graph-container{
+    flex: 10;
+    
+    padding: 10px;
+    
+}
+
+.sidebar-container {
+    flex: 1;
+    padding: 10px;
+}
+
+/* .banner-container {
     height: 130px;
     background-color: #5DC8AC;
+}
+
+.practice-main-container {
+   
+    
+    height: 100px;
+    background-color: #e4ef17;
+    border: 10px red solid;
+    
+} */
+
+
+/* 
+.main-container {
+    display: flex;
+    
+    flex-direction: row;
+
+    justify-content: flex-start;
+    align-items: stretch;
+    margin: 10px;
+
+    
+    border: solid red 2px;
+}
+
+
+    
+
+
+
+.chart-container{
+    padding: 50px;
+    background-color: bisque;
+    height: 100%;
+
+    
+    
     
     
 }
+
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 200px;
+    
+    background-color: azure;
+    margin: 10px;
+    padding: 10px;
+
+    
+
+    height: 100%;
+}
+ */
+
+
+
