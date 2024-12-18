@@ -45,8 +45,6 @@ def viewStats(request):
             context = {'chart': chart}
             return render(request, "jobs/stats.html", context)
 
-
-
         # we will need a skills analyser for the job description secrtion
         if chartselection == "skills":
             fig = px.bar(df, x="robot_type")

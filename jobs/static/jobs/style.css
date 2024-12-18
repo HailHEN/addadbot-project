@@ -18,6 +18,10 @@ body{
 
 }
 
+.overview-container, .main-container {
+    padding: 25px;
+}
+
 .overview-container {
     display: flex;
     flex: 5;

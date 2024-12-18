@@ -58,7 +58,6 @@ class JobPostingsAnalysis:
     def analyse_type_of_robotics(self):
         self.job_df['robot_type'].value_counts().plot(kind='bar')
         
-        
         return
 
     def analyse_expertise_of_robotics_field(self):
@@ -91,6 +90,7 @@ class JobPostingsAnalysis:
     # will analyse key words in job title and the description of the job
     # add description section in model later
     def keywords_skill_analyser(self):
+
         return
     
 
