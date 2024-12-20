@@ -6,121 +6,93 @@
 body{
     display: flex;
     flex-direction: column;
-    /* height: 100vh;  */
+    height: 100vh; 
 
-    min-height: 100vh;
+    
+    
+
+    /* min-height: 100vh; */
     
 }
 .banner{
 
-    flex: 1;
+    height: 85px;
+    width: 100%;
+    position: fixed;
+
     background-color: #5DC8AC;
+    z-index:1;
 
-}
-
-.overview-container, .main-container {
-    padding: 25px;
 }
 
 .overview-container {
     display: flex;
-    flex: 5;
+    
     justify-content: center;
+    padding: 25px;
+    margin-top: 100px;
+    
+    
 }
 .card {
     flex: 1;
     margin: 10px;
     text-align: center;
-    border: black 2px solid;
+    box-shadow:
+      0 1px 1px hsl(0deg 0% 0% / 0.075),
+      0 2px 2px hsl(0deg 0% 0% / 0.075),
+      0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075),
+      0 16px 16px hsl(0deg 0% 0% / 0.075)
+    ;
     font-size: large;
+
+    border-radius: 8px;
+    /* add height auto here once you link with back end */
+    height: 250px;
 }
-.main-container {
-    
-    flex: 10;
-
-    
-    
-}
-
-.dashboard-container {
-    display: flex;
-    height: 100%;
-
-}
-
-.graph-container{
-    flex: 10;
-    
-    padding: 10px;
-    
-}
-
-.sidebar-container {
-    flex: 1;
-    padding: 10px;
-}
-
-/* .banner-container {
-    height: 130px;
-    background-color: #5DC8AC;
-}
-
-.practice-main-container {
-   
-    
-    height: 100px;
-    background-color: #e4ef17;
-    border: 10px red solid;
-    
-} */
-
-
-/* 
-.main-container {
-    display: flex;
-    
-    flex-direction: row;
-
-    justify-content: flex-start;
-    align-items: stretch;
-    margin: 10px;
-
-    
-    border: solid red 2px;
-}
-
-
-    
-
-
-
-.chart-container{
-    padding: 50px;
-    background-color: bisque;
-    height: 100%;
-
+.main-chart-container {
+    padding: 450px;
+    z-index:0;
+    padding-top: 100px;
+    padding-bottom: 250px;
     
     
     
-    
-}
 
-
-.dashboard-container {
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
-    width: 200px;
-    
-    background-color: azure;
-    margin: 10px;
-    padding: 10px;
-
-    
-
-    height: 100%;
 }
- */
+
+.chart-container{
+    height: 450px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+    
+    z-index:0;
+
+}
+
+.text-description {
+    height: 150px;
+    margin: 10px;
+    width: 100%;
+    border-radius: 8px;
+    z-index:1;
+    box-shadow:
+    0 1px 1px hsl(0deg 0% 0% / 0.075),
+    0 2px 2px hsl(0deg 0% 0% / 0.075),
+    0 4px 4px hsl(0deg 0% 0% / 0.075),
+    0 8px 8px hsl(0deg 0% 0% / 0.075),
+    0 12px 12px hsl(0deg 0% 0% / 0.075)
+  ;
+
+  text-align: center;
+}
+
+
 
 
 

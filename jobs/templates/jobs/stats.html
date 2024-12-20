@@ -13,7 +13,7 @@
   <body>
 
     <div class= "banner"> </div>
-    <div class="overview-container"> 
+    {% comment %} <div class="overview-container"> 
         <div class = "card c1">
           Jobs posted in your location
           {{ numbersForCountry }}
@@ -26,51 +26,60 @@
           Jobs posted today
           {{ numbersForDay }}
         </div>
-      
-      
-    </div>
+      </div> {% endcomment %}
 
-    <div class = "main-container"> 
+    
+
+
+    <div class="main-chart-container">
+      <div class = "chart-container"> 
+        {{chart|safe}}
+      </div> 
+
+      <div class="text-description"> </div>
   
-      <div class = "dashboard-container">
-        {% comment %} <div class="sidebar-container">
+      <div class = "chart-container"> 
+        {{chart2|safe}}
+      </div> 
 
-          <label class = "dashboard-item" for="graph-select">Robotics job postings analysis</label>
-
-          <form method = "GET" class="form-container">
-            {% csrf_token %}
-            <select name="graphs" class="graph-select">
-              <option value="post">Postings</option>
-              <option value="robot-type">Type of Robot</option>
-              <option value="expertise">Area of Expertise</option>
-              <option value="skills">Required Software Skills</option>
-              <option value="position">Job Position</option>
-            </select>
-            <input type="submit" value="Select">
-          </form>
+      <div class="text-description"> </div>
 
 
+      <div class = "chart-container"> 
+        {{chart3|safe}}
+      </div>   
+      <div class="text-description"> </div>
 
-        </div> {% endcomment %}
-        <div class="graph-container">
+      <div class = "chart-container"> 
+        {{chart4|safe}}
+      </div>   
+      <div class="text-description"> </div>
 
+      <div class = "chart-container"> 
+        {{chart5|safe}}
+      </div>   
+      <div class="text-description"> </div>
 
-          <div class = "chart-container"> 
-
-            {%block content%}
+      <div class = "chart-container"> 
+        {{chart6|safe}}
+      </div>   
+      <div class="text-description"> </div>
+      
+      <div class = "chart-container"> 
+        {{chart7|safe}}
+      </div>   
+      <div class="text-description"> </div>
     
-            {{chart|safe}}
     
-            {%endblock content%}
-          </div>
-
-
-        </div>
-
-      </div>
-
-
+    
     </div>
+
+    
+    
+    
+
+    
+
 
     
     

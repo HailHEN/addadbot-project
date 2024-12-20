@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
-
+import numpy as np
 
 
 
@@ -38,6 +38,15 @@ import pandas as pd
 
 
 ##################################################################
+
+skills_key_words = {"c++", "c#",
+                    "python", "java", "embedded systems",
+                    "microcontroller",
+                    "math", "control",
+                    "ai","machine learning","computer vision","cad"
+                    ,"circuits", "autonomy", "automonous", "ml", "ai"
+                    ,"programming", "coding"}
+
 class JobPostingsAnalysis:
 
     job_df = pd.DataFrame()
@@ -87,11 +96,65 @@ class JobPostingsAnalysis:
         return
     
 
-    # will analyse key words in job title and the description of the job
-    # add description section in model later
-    def keywords_skill_analyser(self):
+    
 
-        return
+    def startswitchchecker(word):
+
+        for keyw in skills_key_words:
+            if word.startswith(keyw):
+                return True
+        
+        return False
+    
+
+
+
+    def clean_alt_list(list_):
+        list_ = list_.replace(', ', '","')
+        list_ = list_.replace('[', '["')
+        list_ = list_.replace(']', '"]')
+        return list_
+
+
+        
+
+    
+    def analyse_description(description):
+        temp_list = set()
+        for word in description.split():
+            word = word.lower()
+            word = word.replace(',', '')
+            word = word.replace(':', '')
+
+            if (word in skills_key_words or JobPostingsAnalysis.startswitchchecker(word)) and (word not in temp_list):
+                
+                temp_list.add(str(word))
+
+        return list(temp_list)
+    
+    # will analyse key words in job title and the description of the job and return list of skills
+    #in future add new column in pandas dataframe for list of skills for each row
+    def keywords_skill_description_analyser(self):
+        df = self.job_df
+        
+
+        descriptions = df['job_description'].to_list()
+        
+        list_of_keywords_for_dataframe = []
+        for description in descriptions:
+            
+            
+            list_of_keywords_in_description = JobPostingsAnalysis.analyse_description(description)
+            
+            list_of_keywords_for_dataframe.append(list_of_keywords_in_description)
+            
+            
+
+
+        self.job_df['Skills'] = pd.Series(list_of_keywords_for_dataframe)
+        
+        
+        return self.job_df['Skills'].explode().value_counts().index.tolist(), self.job_df['Skills'].explode().value_counts().values
     
 
 
