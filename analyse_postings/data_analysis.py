@@ -109,44 +109,47 @@ class JobPostingsAnalysis:
 
 
 
-    def clean_alt_list(list_):
-        list_ = list_.replace(', ', '","')
-        list_ = list_.replace('[', '["')
-        list_ = list_.replace(']', '"]')
-        return list_
+    
+    def analyse_skills_list(skills):
+        temp_list = set()
 
+
+        for skill in skills.split():
+            skill = skill.lower()
+            temp_list.add(str(skill))
+            
 
         
+        # for word in description.split():
+        #     word = word.lower()
+        #     word = word.replace(',', '')
+        #     word = word.replace(':', '')
 
-    
-    def analyse_description(description):
-        temp_list = set()
-        for word in description.split():
-            word = word.lower()
-            word = word.replace(',', '')
-            word = word.replace(':', '')
-
-            if (word in skills_key_words or JobPostingsAnalysis.startswitchchecker(word)) and (word not in temp_list):
+        #     if (word in skills_key_words or JobPostingsAnalysis.startswitchchecker(word)) and (word not in temp_list):
                 
-                temp_list.add(str(word))
+        #         temp_list.add(str(word))
 
         return list(temp_list)
     
-    # will analyse key words in job title and the description of the job and return list of skills
-    #in future add new column in pandas dataframe for list of skills for each row
+    
+
+   
+    
+        
+
     def keywords_skill_description_analyser(self):
         df = self.job_df
         
 
-        descriptions = df['job_description'].to_list()
+        required_skills = df['required_skills'].to_list()
         
         list_of_keywords_for_dataframe = []
-        for description in descriptions:
+        for skills in required_skills:
             
             
-            list_of_keywords_in_description = JobPostingsAnalysis.analyse_description(description)
+            list_of_keywords_in_required_skills = JobPostingsAnalysis.analyse_skills_list(skills)
             
-            list_of_keywords_for_dataframe.append(list_of_keywords_in_description)
+            list_of_keywords_for_dataframe.append(list_of_keywords_in_required_skills)
             
             
 

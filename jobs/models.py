@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class JobPost(models.Model):
+
+    def clean_skills(self):
+        self.required_skills
+        return
     job_title = models.CharField(max_length=200)
     date_posted = models.DateField()
 
@@ -17,5 +21,9 @@ class JobPost(models.Model):
     employment_type = models.CharField(max_length=200)
     robot_type = models.CharField(max_length=200)
     robotics_domain = models.CharField(max_length=200)  
-    job_description = models.TextField(max_length=2000)  
+    job_description = models.TextField(max_length=2000)
+    required_skills = models.TextField(max_length=1000)
+    
+
+
 
