@@ -46,13 +46,27 @@
         {% endfor %} 
       </div>
   
+      <div class="expert_domain">
+
+
+        <div class = "chart-container"> 
+          {{chart3|safe}}
+        </div>   
+        {% comment %} <div class="text-description"> </div> {% endcomment %}
+
+        <div class = "chart-container"> 
+          {{chart6|safe}}
+        </div>   
+        
+        {% comment %} <div class="text-description"> </div> {% endcomment %}
+
+
+      </div>
       
 
-
-      <div class = "chart-container"> 
-        {{chart3|safe}}
-      </div>   
-      <div class="text-description"> </div>
+      
+      
+      </div>
 
       <div class = "chart-container"> 
         {{chart4|safe}}
@@ -64,10 +78,7 @@
       </div>   
       <div class="text-description"> </div>
 
-      <div class = "chart-container"> 
-        {{chart6|safe}}
-      </div>   
-      <div class="text-description"> </div>
+      
       
       <div class = "chart-container"> 
         {{chart7|safe}}

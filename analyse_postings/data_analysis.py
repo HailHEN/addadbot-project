@@ -39,13 +39,13 @@ import numpy as np
 
 ##################################################################
 
-skills_key_words = {"c++", "c#",
-                    "python", "java", "embedded systems",
-                    "microcontroller",
-                    "math", "control",
-                    "ai","machine learning","computer vision","cad"
-                    ,"circuits", "autonomy", "automonous", "ml", "ai"
-                    ,"programming", "coding"}
+# skills_key_words = {"c++", "c#",
+#                     "python", "java", "embedded systems",
+#                     "microcontroller",
+#                     "math", "control",
+#                     "ai","machine learning","computer vision","cad"
+#                     ,"circuits", "autonomy", "automonous", "ml", "ai"
+#                     ,"programming", "coding"}
 
 class JobPostingsAnalysis:
 
@@ -159,9 +159,32 @@ class JobPostingsAnalysis:
     def area_of_expertise_stat_summary(self):
         df = self.job_df
 
-        # area of expertise required and its correlation with domain of robotics and skills required
+        total_jobs_count = len(df.index)
 
-        return
+        expertise_list_for_domain = list()
+        expertise_list_for_skills = list()
+
+        expertise_grouped_domain = df.groupby(['area_of_expertise','robotics_domain'], as_index=False).count()
+        expertise_grouped_skills = df.groupby(['area_of_expertise','required_skills'], as_index=False).count()
+
+
+        expertse_domain = expertise_grouped_domain['area_of_expertise'].tolist()
+        domain = expertise_grouped_domain['robotics_domain'].tolist()
+        count_for_domain = expertise_grouped_domain['job_count'].tolist()
+
+        expertse_skills = expertise_grouped_skills['area_of_expertise'].tolist()
+        skills =  expertise_grouped_skills['required_skills'].tolist()
+        count_for_skills= expertise_grouped_skills['job_count'].tolist()
+
+        for (exp_d, dom, count_d) in zip(expertse_domain, domain, count_for_domain):
+            expertise_list_for_domain.append("Industries in " + exp_d)            
+
+        
+
+        # area of expertise required and its correlation with domain of robotics and skills required
+        # top 10
+
+        return expertise_list_for_domain, expertise_list_for_skills
     
   
     def get_data_frame(self):

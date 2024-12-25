@@ -98,10 +98,13 @@ def viewStats(request):
     
 
     posted_dictionary, job_position_list = d_analysis.stats_summary_for_jobs_posted()
-    
+
     context['job_posted_stat_summary_list'] = posted_dictionary
     context['job_posted_stat_summary_list_inc_type'] = job_position_list
+
+    # exp_dict = d_analysis.area_of_expertise_stat_summary()
     
+    # context['expertise_posted']
     
 
     return render(request, "jobs/stats.html", context )
