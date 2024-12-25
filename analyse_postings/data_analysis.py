@@ -58,58 +58,14 @@ class JobPostingsAnalysis:
         self.job_df.drop('id', axis=1, inplace=True)
 
 
+    # def startswitchchecker(word):
 
-    # return dataframe
-    def data_frame(self):
+    #     for keyw in skills_key_words:
+    #         if word.startswith(keyw):
+    #             return True
         
-        return self.job_df
-        
-    def analyse_type_of_robotics(self):
-        self.job_df['robot_type'].value_counts().plot(kind='bar')
-        
-        return
+    #     return False
 
-    def analyse_expertise_of_robotics_field(self):
-        return
-    #programming skills
-    def software_skills_required(self):
-        return
-
-    def analyse_skills_required(self):
-
-        return
-
-
-
-    def analyse_postings_date_created(self):
-
-        self.job_df["date_posted"].dt.month.value_counts().plot(kind='bar')
-        plt.show()
-
-        return
-
-
-    #bin by month
-    #obviously later on paramters can be changed by slider or something by user
-    def analyse_job_position_posted(self):
-        
-        return
-    
-
-    
-
-    def startswitchchecker(word):
-
-        for keyw in skills_key_words:
-            if word.startswith(keyw):
-                return True
-        
-        return False
-    
-
-
-
-    
     def analyse_skills_list(skills):
         temp_list = set()
 
@@ -158,10 +114,58 @@ class JobPostingsAnalysis:
         
         
         return self.job_df['Skills'].explode().value_counts().index.tolist(), self.job_df['Skills'].explode().value_counts().values
+    # add trends depending on past month, 6 month or 12 month for each (either going up or down for specified time period)
+
+    # automated summary should include (text only):
+            # percentage of jobs that are describing the x axis (top 10)
+            # x axis interaction with other dpendednt values. These will be:
+                # Jobs posted and its correlation with type of employment and job position every month this year including current month
+                # Robot type and its correlation with domain, skills required and country
+                # area of expertise required and its correlation with domain of robotics and skills required
+                # domain of jobs and its correlation with country and skills
+                # skills of jobs and its correlation with ... (tba)
+                # country of jobs and its correlation with ... (tba)
+
+        #count how many jobs posted seperated by positions
     
 
+    def stats_summary_for_jobs_posted(self):
+        
+        df = self.job_df
 
+        job_count_dictionary = dict()
+        job_position_list = list()
+
+        total_jobs_count = len(df.index)
+        type_grouped = df.groupby('employment_type', as_index=False).count()
+        
+        types = type_grouped['employment_type'].tolist()
+        count_for_each_employment = type_grouped['job_count'].tolist()
+
+        position_grouped = df.groupby(['job_position','employment_type'], as_index=False).count()
+
+        positions = position_grouped['job_position'].tolist()
+        type_for_position = position_grouped['employment_type'].tolist()
+        count_for_position = position_grouped['job_count'].tolist()
+
+        for (position, type_p, count_p) in zip(positions, type_for_position, count_for_position):
+            job_position_list.append("Where " + str(round((count_p/total_jobs_count*100), 2)) + "% " + "are " + position + " and " + type_p)
+        
+        for (type, count) in zip(types, count_for_each_employment):
+            job_count_dictionary[str(type)] = str(round((count/total_jobs_count*100), 2))
+
+        return job_count_dictionary, job_position_list
+    
+    def area_of_expertise_stat_summary(self):
+        df = self.job_df
+
+        # area of expertise required and its correlation with domain of robotics and skills required
+
+        return
+    
+  
     def get_data_frame(self):
+        
         return self.job_df
         
 

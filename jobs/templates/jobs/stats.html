@@ -36,13 +36,17 @@
         {{chart|safe}}
       </div> 
 
-      <div class="text-description"> </div>
-  
-      <div class = "chart-container"> 
-        {{chart2|safe}}
-      </div> 
+      <div class="text-description"> 
+        {% for job, count in job_posted_stat_summary_list.items %} 
+          <p> The percentage of {{job}} jobs are {{count}}% </p>
+        {% endfor %} 
 
-      <div class="text-description"> </div>
+        {% for text in job_posted_stat_summary_list_inc_type %} 
+          <p> {{text}} </p>
+        {% endfor %} 
+      </div>
+  
+      
 
 
       <div class = "chart-container"> 

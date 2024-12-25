@@ -9,7 +9,7 @@ import pandas as pd
 
 def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
 
-    fig = px.line(df, x='date_posted', y="job_count", title="Total jobs posted", markers=True, color='job_country')
+    fig = px.line(df, x='date_posted', title="Total jobs posted", markers=True, color='job_country')
 
     fig.update_xaxes(
         rangeslider_visible=True,
@@ -35,10 +35,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
 
 
     
-    fig = px.bar(df, x="robot_type", title="Job Postings based on robot types"
-                 ,width=650, height=450)
-    fig.update_layout(title_text='Job Postings based on robot types', title_x=0.5)
-    chart2 = fig.to_html()
+    
 
     fig = px.bar(df, x="area_of_expertise",
                  width=650, height=450)
@@ -72,7 +69,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     fig.update_traces(textposition='inside', textinfo='percent+label')
     chart8 = fig.to_html()
 
-    return {'chart': chart, 'chart2': chart2, 'chart3': chart3, 'chart4': chart4,
+    return {'chart': chart, 'chart3': chart3, 'chart4': chart4,
                'chart5': chart5, 'chart6': chart6, 'chart7':chart7, 'chart8':chart8}
 
 
@@ -98,6 +95,13 @@ def viewStats(request):
     df['job_count'] = pd.Series([1 for x in range(len(df.index))])
 
     context = charts_setup(df, list_of_skills_unique, frequency_of_skills_counts)
+    
+
+    posted_dictionary, job_position_list = d_analysis.stats_summary_for_jobs_posted()
+    
+    context['job_posted_stat_summary_list'] = posted_dictionary
+    context['job_posted_stat_summary_list_inc_type'] = job_position_list
+    
     
 
     return render(request, "jobs/stats.html", context )
