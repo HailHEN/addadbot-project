@@ -38,7 +38,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     
 
     fig = px.bar(df, x="area_of_expertise",
-                 width=650, height=450)
+                 width=325, height=225)
     fig.update_layout(title_text='Area of expertise', title_x=0.5)
     chart3 = fig.to_html()
     
@@ -53,7 +53,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     chart5 = fig.to_html()
 
     fig = px.bar(df, x="robotics_domain",
-                 width=650, height=450)
+                 width=325, height=225)
     fig.update_layout(title_text='Domain of robotics', title_x=0.5)
     chart6 = fig.to_html()
 
