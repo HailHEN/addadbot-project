@@ -24,7 +24,12 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
         )
     )
 
-    fig.update_layout(title_x=0.5,yaxis=dict(tickmode = 'linear',
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=80,
+        t=40,
+        pad=4), title_x=0.5,yaxis=dict(tickmode = 'linear',
         tick0 = 0,
         dtick = 1))
 
@@ -38,29 +43,54 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     
 
     fig = px.bar(df, x="area_of_expertise",
-                 width=325, height=225)
-    fig.update_layout(title_text='Area of expertise', title_x=0.5)
+                 width=600, height=450)
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=10,
+        t=40,
+        pad=4),title_text='Area of expertise', title_x=0.5)
     chart3 = fig.to_html()
     
     fig = px.bar(df, x="employment_type",
                  width=650, height=450)
-    fig.update_layout(title_text='Type of employment posted', title_x=0.5)
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=10,
+        t=40,
+        pad=4),title_text='Type of employment posted', title_x=0.5)
     chart4 = fig.to_html()
 
     fig = px.bar(df, x="robot_type",
                  width=650, height=450)
-    fig.update_layout(title_text='Types of robots used by employers', title_x=0.5)
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=10,
+        t=40,
+        pad=4),title_text='Types of robots used by employers', title_x=0.5)
     chart5 = fig.to_html()
 
     fig = px.bar(df, x="robotics_domain",
-                 width=325, height=225)
-    fig.update_layout(title_text='Domain of robotics', title_x=0.5)
+                 width=600, height=450)
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=10,
+        t=40,
+        pad=4),title_text='Domain of robotics', title_x=0.5)
     chart6 = fig.to_html()
 
     #so later, maybe use line graphs with date as x axis (can be acheived by using color as skills and x axis date)
     fig = px.bar(x=list_of_skills_unique, y=frequency_of_skills_counts, width=650, height=450,
                  )
-    fig.update_layout(title_text='Skills in robotics', title_x=0.5,
+    fig.update_layout(margin=dict(
+        l=0,
+        r=0,
+        b=10,
+        t=40,
+        pad=4),title_text='Skills in robotics', title_x=0.5,
                        xaxis_title="Skills", yaxis_title="count")
     chart7 = fig.to_html()
 
@@ -102,7 +132,8 @@ def viewStats(request):
     context['job_posted_stat_summary_list'] = posted_dictionary
     context['job_posted_stat_summary_list_inc_type'] = job_position_list
 
-    # exp_dict = d_analysis.area_of_expertise_stat_summary()
+    exp_list = d_analysis.area_of_expertise_stat_summary()
+    context['domain_expertise_list'] = exp_list
     
     # context['expertise_posted']
     
