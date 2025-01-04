@@ -8,8 +8,13 @@ from matplotlib import pyplot as plt
 import pandas as pd
 
 def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
-
-    fig = px.line(df, x='date_posted', title="Total jobs posted", markers=True, color='job_country')
+    line_df = df[["date_posted", "job_country"]]
+    temp_line_df = line_df
+    line_df = pd.DataFrame(line_df['date_posted'].dt.date.value_counts()).reset_index()
+    line_df['date_posted'] = pd.to_datetime(line_df['date_posted'])
+    line_df = temp_line_df.merge(line_df, how='left', on='date_posted')
+    print(line_df)
+    fig = px.line(line_df, x='date_posted', y = 'count', title="Total jobs posted", markers=True, color='job_country')
 
     fig.update_xaxes(
         rangeslider_visible=True,
@@ -99,8 +104,11 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     fig.update_traces(textposition='inside', textinfo='percent+label')
     chart8 = fig.to_html()
 
+    fig = px.sunburst(df, path=['employment_type', 'job_position', 'robot_type'], values='job_count', color='employment_type')
+    chart9 = fig.to_html()
+
     return {'chart': chart, 'chart3': chart3, 'chart4': chart4,
-               'chart5': chart5, 'chart6': chart6, 'chart7':chart7, 'chart8':chart8}
+               'chart5': chart5, 'chart6': chart6, 'chart7':chart7, 'chart8':chart8, 'chart9':chart9}
 
 
 def viewStats(request):
@@ -134,6 +142,10 @@ def viewStats(request):
 
     exp_list = d_analysis.area_of_expertise_stat_summary()
     context['domain_expertise_list'] = exp_list
+
+
+    context['robot_type_list'] = d_analysis.types_of_robot_stat_summary()
+     
     
     # context['expertise_posted']
     

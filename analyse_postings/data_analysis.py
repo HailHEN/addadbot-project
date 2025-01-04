@@ -66,12 +66,51 @@ class JobPostingsAnalysis:
         
     #     return False
 
+
+    def response_creator(r_type, skills):
+        response = ""
+        for skill, stat in skills.items():
+            response = response + str(round((stat*100), 2)) + "% " + "are " + str(skill) + " postings\n"
+
+
+        return "For jobs requiring robot type " + r_type + ":\n" + response
+    def filter_skills(skills):
+
+        temp_list = list()
+
+
+        for skill in skills.split():
+            skill = skill.lower()
+            skill = skill.replace(',', '')
+            skill = skill.replace("'", '')
+            skill = skill.replace("[", '')
+            skill = skill.replace("]", '')
+            
+            
+            temp_list.append(str(skill))
+            
+
+        
+        # for word in description.split():
+        #     word = word.lower()
+        #     word = word.replace(',', '')
+        #     word = word.replace(':', '')
+
+        #     if (word in skills_key_words or JobPostingsAnalysis.startswitchchecker(word)) and (word not in temp_list):
+                
+        #         temp_list.add(str(word))
+
+        return temp_list
+
+
+
     def analyse_skills_list(skills):
         temp_list = set()
 
 
         for skill in skills.split():
             skill = skill.lower()
+            
             temp_list.add(str(skill))
             
 
@@ -88,11 +127,6 @@ class JobPostingsAnalysis:
         return list(temp_list)
     
     
-
-   
-    
-        
-
     def keywords_skill_description_analyser(self):
         df = self.job_df
         
@@ -157,8 +191,8 @@ class JobPostingsAnalysis:
         return job_count_dictionary, job_position_list
     
     def area_of_expertise_stat_summary(self):
-        df = self.job_df
 
+        df = self.job_df
         total_jobs_count = len(df.index)
 
         expertise_list_for_domain = list()
@@ -168,8 +202,6 @@ class JobPostingsAnalysis:
         # expertise_grouped_skills = df.groupby(['area_of_expertise','required_skills'], as_index=False).count()
 
         
-
-
         expertse_domain = expertise_grouped_domain['area_of_expertise'].tolist()
         domain = expertise_grouped_domain['robotics_domain'].tolist()
         count_for_domain = expertise_grouped_domain['job_count'].tolist()
@@ -181,17 +213,58 @@ class JobPostingsAnalysis:
         for (exp_d, dom, count_d) in zip(expertse_domain, domain, count_for_domain):
             expertise_list_for_domain.append("Industries in " + exp_d + " are composed of " + str(round((count_d/total_jobs_count*100), 2)) + "% " + " of " + dom + " robotics.")            
 
-        
-
         # area of expertise required and its correlation with domain of robotics and skills required
         # top 10
 
         return expertise_list_for_domain
     
-    def employemtn_type_stat_summary(self):
+    # to optimise thhis will be to make sure the skills is already in lists of words so I dont have to do preprocessing
+    # can also add graph to aid
+    # examples of grabs can be subplots
+    def types_of_robot_stat_summary(self):
         df = self.job_df
 
-        
+        # go through all the types of robots
+        # for each type (after grouping) of robots count all the skills required
+        # for each type of robots list all the the skills and their percentages 
+
+        type_of_robot_dict = dict()
+        responses_list = list()
+
+        robot_type_list = df['robot_type'].to_numpy().tolist()
+        robot_skills_list = df['required_skills'].to_numpy().tolist()
+
+        for key in robot_type_list:
+            type_of_robot_dict[key] = []
+
+
+        for (type,skills) in zip(robot_type_list, robot_skills_list):
+            type_of_robot_dict[type].append(skills)
+
+        for key in type_of_robot_dict:
+            type_of_robot_dict[key] = JobPostingsAnalysis.filter_skills(str(type_of_robot_dict[key]))
+            
+            
+
+        for key in type_of_robot_dict:
+            type_of_robot_dict[key] = pd.Series(type_of_robot_dict[key]).value_counts(normalize=True)
+            print(type_of_robot_dict[key])
+
+
+
+        for key in type_of_robot_dict:
+            responses_list.append(JobPostingsAnalysis.response_creator(key,type_of_robot_dict[key]))
+
+        print(responses_list)
+
+        return responses_list
+    
+    def skills_of_robot_stat_summary(self):
+        # where are the skills in terms of industry (for each industry list skills similar to above)
+        return
+    
+    def stat_summary_country(self):
+        # industry for each country samea as type of robots
         return
 
     

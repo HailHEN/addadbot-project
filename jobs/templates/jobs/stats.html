@@ -76,24 +76,32 @@
       <div class = "chart-container"> 
         {{chart4|safe}}
       </div>   
-      <div class="text-description"> </div>
+      <div class = "chart-container"> 
+        {{chart9|safe}}
+      </div>   
+      
 
       <div class = "chart-container"> 
         {{chart5|safe}}
       </div>   
-      <div class="text-description"> </div>
+      <div class="text-description"> 
+        {% for text in robot_type_list %} 
+          <p> {{text}} </p>
+        {% endfor %} 
+
+      </div>
 
       
       
       <div class = "chart-container"> 
         {{chart7|safe}}
       </div>   
-      <div class="text-description"> </div>
+      {% comment %} <div class="text-description"> </div> {% endcomment %}
 
       <div class = "chart-container"> 
         {{chart8|safe}}
       </div>   
-      <div class="text-description"> </div>
+      {% comment %} <div class="text-description"> </div> {% endcomment %}
     
     
     
