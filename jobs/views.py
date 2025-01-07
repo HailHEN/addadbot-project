@@ -22,8 +22,6 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
             buttons=list([
                 dict(count=1, label="1m", step="month", stepmode="backward"),
                 dict(count=6, label="6m", step="month", stepmode="backward"),
-                dict(count=1, label="YTD", step="year", stepmode="todate"),
-                dict(count=1, label="1y", step="year", stepmode="backward"),
                 dict(step="all")
             ])
         )
@@ -49,6 +47,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
 
     fig = px.bar(df, x="area_of_expertise",
                  width=600, height=450)
+    fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     fig.update_layout(margin=dict(
         l=0,
         r=0,
@@ -59,12 +58,14 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     
     fig = px.bar(df, x="employment_type",
                  width=650, height=450)
+    
     fig.update_layout(margin=dict(
         l=0,
         r=0,
         b=10,
         t=40,
         pad=4),title_text='Type of employment posted', title_x=0.5)
+    fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     chart4 = fig.to_html()
 
     fig = px.bar(df, x="robot_type",
@@ -75,6 +76,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
         b=10,
         t=40,
         pad=4),title_text='Types of robots used by employers', title_x=0.5)
+    fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     chart5 = fig.to_html()
 
     fig = px.bar(df, x="robotics_domain",
@@ -85,6 +87,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
         b=10,
         t=40,
         pad=4),title_text='Domain of robotics', title_x=0.5)
+    fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     chart6 = fig.to_html()
 
     #so later, maybe use line graphs with date as x axis (can be acheived by using color as skills and x axis date)
@@ -97,6 +100,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
         t=40,
         pad=4),title_text='Skills in robotics', title_x=0.5,
                        xaxis_title="Skills", yaxis_title="count")
+    fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     chart7 = fig.to_html()
 
     fig = px.pie(df,values='job_count', names='job_country', title="Jobs posted per country"
