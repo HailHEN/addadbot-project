@@ -3,17 +3,21 @@ from plotly import express as px
 
 from django.http import HttpResponse
 from jobs.models import JobPost
+
 from analyse_postings.data_analysis import JobPostingsAnalysis
 from matplotlib import pyplot as plt
 import pandas as pd
 
 def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
+    count_of_jobs = JobPost.objects.all().count()
+    
     line_df = df[["date_posted", "job_country"]]
     temp_line_df = line_df
     line_df = pd.DataFrame(line_df['date_posted'].dt.date.value_counts()).reset_index()
     line_df['date_posted'] = pd.to_datetime(line_df['date_posted'])
     line_df = temp_line_df.merge(line_df, how='left', on='date_posted')
-    print(line_df)
+    
+
     fig = px.line(line_df, x='date_posted', y = 'count', title="Total jobs posted", markers=True, color='job_country')
 
     fig.update_xaxes(
@@ -100,6 +104,7 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
         t=40,
         pad=4),title_text='Skills in robotics', title_x=0.5,
                        xaxis_title="Skills", yaxis_title="count")
+    
     fig.update_layout(xaxis={'categoryorder':'total descending'}) 
     chart7 = fig.to_html()
 
@@ -111,8 +116,9 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
     fig = px.sunburst(df, path=['employment_type', 'job_position', 'robot_type'], values='job_count', color='employment_type')
     chart9 = fig.to_html()
 
+
     return {'chart': chart, 'chart3': chart3, 'chart4': chart4,
-               'chart5': chart5, 'chart6': chart6, 'chart7':chart7, 'chart8':chart8, 'chart9':chart9}
+               'chart5': chart5, 'chart6': chart6, 'chart7':chart7, 'chart8':chart8, 'chart9':chart9, 'count_of_jobs':count_of_jobs}
 
 
 def viewStats(request):
@@ -137,18 +143,12 @@ def viewStats(request):
     df['job_count'] = pd.Series([1 for x in range(len(df.index))])
 
     context = charts_setup(df, list_of_skills_unique, frequency_of_skills_counts)
-    
-
     posted_dictionary, job_position_list = d_analysis.stats_summary_for_jobs_posted()
-
     context['job_posted_stat_summary_list'] = posted_dictionary
     context['job_posted_stat_summary_list_inc_type'] = job_position_list
-
     exp_list = d_analysis.area_of_expertise_stat_summary()
     context['domain_expertise_list'] = exp_list
-
-
-    context['robot_type_list'] = d_analysis.types_of_robot_stat_summary()
+    context['robot_type_dict'] = d_analysis.types_of_robot_stat_summary()
      
     
     # context['expertise_posted']
