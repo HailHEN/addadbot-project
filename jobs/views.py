@@ -44,11 +44,6 @@ def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
 
     chart = fig.to_html()
 
-
-
-    
-    
-
     fig = px.bar(df, x="area_of_expertise",
                  width=600, height=450)
     fig.update_layout(xaxis={'categoryorder':'total descending'}) 
