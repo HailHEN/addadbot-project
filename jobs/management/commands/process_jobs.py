@@ -20,8 +20,19 @@ class Command(BaseCommand):
             count_of_jobs = JobPost.objects.all().count()
             df = d_analysis.get_data_frame()
             list_of_skills_unique, frequency_of_skills_counts  = d_analysis.keywords_skill_description_analyser()
+            context = dict()
+
             df['job_count'] = pd.Series([1 for x in range(len(df.index))])
             ChartSetups.charts_setup(df, list_of_skills_unique, frequency_of_skills_counts)
+
+            context['count_of_jobs'] = count_of_jobs
+            # next process all the files from the graphs folder (so iterate over the graphs folder and then map it to this dictionary)
+            posted_dictionary, job_position_list = d_analysis.stats_summary_for_jobs_posted()
+            context['job_posted_stat_summary_list'] = posted_dictionary
+            context['job_posted_stat_summary_list_inc_type'] = job_position_list
+            exp_list = d_analysis.area_of_expertise_stat_summary()
+            context['domain_expertise_list'] = exp_list
+            context['robot_type_dict'] = d_analysis.types_of_robot_stat_summary()
         
 
             self.stdout.write(
