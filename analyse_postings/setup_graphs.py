@@ -1,9 +1,8 @@
-from jobs.models import JobPost, Graph
+from jobs.models import Graph
 import pandas as pd
 from plotly import express as px
-import plotly
-import json
-from django.core.files import File
+
+
 class ChartSetups:
 
     def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):

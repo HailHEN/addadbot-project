@@ -1,15 +1,13 @@
-from django.core.management.base import BaseCommand, CommandError
+from django.core.management.base import BaseCommand
 from jobs.models import JobPost
 from jobs.models import GraphDescription
-import plotly
-from plotly import express as px
+
 import json
 
 
 from analyse_postings.data_analysis import JobPostingsAnalysis
 from analyse_postings.setup_graphs import ChartSetups
 import pandas as pd
-import os
 
 
 

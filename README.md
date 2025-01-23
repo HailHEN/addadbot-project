@@ -4,3 +4,12 @@
 
 3. Graphs and graph descriptions are saved in django databse. This is done by converting them into json and decoding them when used. This
     essentially caches the result and the server only needs to serve the decoded json to user. NO computation during runtime.
+
+
+Required packages:
+
+- plotly (plotly express)
+- pandas
+- json
+
+
