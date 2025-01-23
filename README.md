@@ -1,19 +1,6 @@
-For each postings analyse:
+1. To create graphs and descriptiopn analysis must run command "python3 manage.py process_jobs"
+2. When inputting the skills into the model, skills are seperated by white space. No special characters otherwise analysis wont work. 
+    To make this better, perhaps change the skills field in the jobs model to a multiple choice with given set of skills to avoid typos!
 
-POSTINGS
-
-COUNTRY
-
-POSITION (TYPE OF POSITION, JOB TYPE INTERN ETC, ENINEERING ROLE ETC, DOCTOR, BACHELOR REQUIRED)
-
-DOMAIN (ROBOT TYPE)
-
-TYPE OF ROBOT (MEDICAL INDUSTRY, SPACE INDUSTRY EETC )
-
-AREA OF ROBOTICS
-
-SOFTWARE SKILLS REQUIRED
-
-DATE CREATED
-
-POSITION TITLE (JUNIOR ETC)
+3. Graphs and graph descriptions are saved in django databse. This is done by converting them into json and decoding them when used. This
+    essentially caches the result and the server only needs to serve the decoded json to user. NO computation during runtime.

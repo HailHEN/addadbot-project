@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from jobs.models import JobPost
-from jobs.models import Graph, GraphDescription
+from jobs.models import GraphDescription
 import plotly
 from plotly import express as px
 import json
@@ -45,6 +45,7 @@ class Command(BaseCommand):
             self.stdout.write(
                 self.style.SUCCESS('Saving descriptions.')
             )
+            
             GraphDescription.objects.all().delete()
             descriptions = GraphDescription(description_dictionary = json.dumps(context))
             descriptions.save()

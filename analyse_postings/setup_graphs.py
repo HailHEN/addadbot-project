@@ -39,7 +39,7 @@ class ChartSetups:
             pad=4), title_x=0.5,yaxis=dict(tickmode = 'linear',
             tick0 = 0,
             dtick = 1))
-        graph = Graph(graph_file = fig.to_json(), graph_name = "chart1")
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart")
         graph.save()
 
         
