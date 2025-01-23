@@ -1,11 +1,14 @@
-from jobs.models import JobPost
+from jobs.models import JobPost, Graph
 import pandas as pd
 from plotly import express as px
 import plotly
-
+import json
+from django.core.files import File
 class ChartSetups:
 
     def charts_setup(df, list_of_skills_unique, frequency_of_skills_counts):
+
+        Graph.objects.all().delete()
         
         
         line_df = df[["date_posted", "job_country"]]
@@ -36,10 +39,10 @@ class ChartSetups:
             pad=4), title_x=0.5,yaxis=dict(tickmode = 'linear',
             tick0 = 0,
             dtick = 1))
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart1")
+        graph.save()
 
-
-        # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph1.html')
+        
 
         fig = px.bar(df, x="area_of_expertise",
                     width=600, height=450)
@@ -51,8 +54,9 @@ class ChartSetups:
             t=40,
             pad=4),title_text='Area of expertise', title_x=0.5)
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph2.html')
-        chart3 = fig.to_html()
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart3")
+        graph.save()
+        
         
         fig = px.bar(df, x="employment_type",
                     width=650, height=450)
@@ -66,7 +70,8 @@ class ChartSetups:
         fig.update_layout(xaxis={'categoryorder':'total descending'}) 
 
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph3.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart4")
+        graph.save()
 
         fig = px.bar(df, x="robot_type",
                     width=650, height=450)
@@ -78,7 +83,8 @@ class ChartSetups:
             pad=4),title_text='Types of robots used by employers', title_x=0.5)
         fig.update_layout(xaxis={'categoryorder':'total descending'}) 
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph4.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart5")
+        graph.save()
 
         fig = px.bar(df, x="robotics_domain",
                     width=600, height=450)
@@ -90,7 +96,8 @@ class ChartSetups:
             pad=4),title_text='Domain of robotics', title_x=0.5)
         fig.update_layout(xaxis={'categoryorder':'total descending'}) 
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph5.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart6")
+        graph.save()
 
         #so later, maybe use line graphs with date as x axis (can be acheived by using color as skills and x axis date)
         fig = px.bar(x=list_of_skills_unique, y=frequency_of_skills_counts, width=650, height=450,
@@ -105,17 +112,20 @@ class ChartSetups:
         
         fig.update_layout(xaxis={'categoryorder':'total descending'}) 
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph6.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart7")
+        graph.save()
 
         fig = px.pie(df,values='job_count', names='job_country', title="Jobs posted per country"
                     ,width=650, height=450, labels={'job_count':'Jobs','job_country':'Country'})
         fig.update_traces(textposition='inside', textinfo='percent+label')
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph7.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart8")
+        graph.save()
 
         fig = px.sunburst(df, path=['employment_type', 'job_position', 'robot_type'], values='job_count', color='employment_type')
         # save to graphs folder
-        plotly.offline.plot(fig, filename='./analyse_postings/resources/graphs/graph8.html')
+        graph = Graph(graph_file = fig.to_json(), graph_name = "chart9")
+        graph.save()
 
 
         

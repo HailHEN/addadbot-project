@@ -2,6 +2,13 @@ from django.db import models
 
 # Create your models here.
 
+class GraphDescription(models.Model):
+    
+    description_dictionary = models.JSONField()
+
+class Graph(models.Model):
+    graph_name =  models.CharField(max_length=200, null=True)  
+    graph_file = models.JSONField()
 class JobPost(models.Model):
 
     def clean_skills(self):
@@ -23,6 +30,12 @@ class JobPost(models.Model):
     robotics_domain = models.CharField(max_length=200)  
     job_description = models.TextField(max_length=2000)
     required_skills = models.TextField(max_length=1000)
+
+
+
+
+
+
     
 
 
