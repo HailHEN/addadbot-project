@@ -1,5 +1,5 @@
 
-import matplotlib.pyplot as plt
+
 import pandas as pd
 import numpy as np
 
@@ -13,7 +13,11 @@ class JobPostingsAnalysis:
         self.job_df["date_posted"] = self.job_df["date_posted"].astype("datetime64[ns]")
         self.job_df.drop('id', axis=1, inplace=True)
 
-    
+    # used to clean the skills
+    # this is used as we are currently using a textbox to input skills currently
+    # this will not be needed if we had a multple choice set of skills
+    # which are then selected by admin for respective jobs
+
     def filter_skills(skills):
 
         temp_list = list()
@@ -120,9 +124,7 @@ class JobPostingsAnalysis:
 
         return response_list
     
-    # to optimise thhis will be to make sure the skills is already in lists of words so I dont have to do preprocessing
-    # can also add graph to aid
-    # examples of grabs can be subplots
+    
     def types_of_robot_stat_summary(self):
         df = self.job_df
 
@@ -159,15 +161,17 @@ class JobPostingsAnalysis:
 
             type_of_robot_dict[key] = JobPostingsAnalysis.response_creator(type_of_robot_dict[key])
 
-            # responses_list.append(JobPostingsAnalysis.response_creator(type_of_robot_dict[key]))
+            
 
        
         return type_of_robot_dict
     
+
+
+    # potential functions 
     def skills_of_robot_stat_summary(self):
         # where are the skills in terms of industry (for each industry list skills similar to above)
         return
-    
     def stat_summary_country(self):
         # industry for each country samea as type of robots
         return
